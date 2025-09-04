@@ -53,6 +53,7 @@ import {
   BookOpen,
   Newspaper,
 } from "lucide-react"
+import Image from "next/image"
 
 const heroSlides = [
   {
@@ -193,7 +194,9 @@ export default function PenGlobalSolutions() {
               }`}
           >
             <div className="absolute inset-0">
-              <img
+              <Image
+                width={500}
+                height={500}
                 src={slide.videoUrl || "/placeholder.svg"}
                 alt={`${slide.title} background`}
                 className="w-full h-full object-cover"
@@ -312,8 +315,8 @@ export default function PenGlobalSolutions() {
             <button
               onClick={() => setActiveTab("visa")}
               className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === "visa"
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+                ? "bg-primary text-primary-foreground shadow-lg"
+                : "bg-muted text-muted-foreground hover:bg-muted/80"
                 }`}
             >
               Pen Visa Consultancy
@@ -321,8 +324,8 @@ export default function PenGlobalSolutions() {
             <button
               onClick={() => setActiveTab("tech")}
               className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === "tech"
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+                ? "bg-primary text-primary-foreground shadow-lg"
+                : "bg-muted text-muted-foreground hover:bg-muted/80"
                 }`}
             >
               Penova Tech
@@ -330,8 +333,8 @@ export default function PenGlobalSolutions() {
             <button
               onClick={() => setActiveTab("tutor")}
               className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === "tutor"
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+                ? "bg-primary text-primary-foreground shadow-lg"
+                : "bg-muted text-muted-foreground hover:bg-muted/80"
                 }`}
             >
               Pen Tutor
@@ -557,7 +560,9 @@ export default function PenGlobalSolutions() {
             {/* Product Demo */}
             <div className="space-y-6">
               <div className="relative">
-                <img
+                <Image
+                  width={500}
+                  height={500}
                   src="/online-learning-platform-with-video-calls-and-inte.jpg"
                   alt="Pen Tutor Platform Demo"
                   className="w-full rounded-lg shadow-2xl"
@@ -694,7 +699,9 @@ export default function PenGlobalSolutions() {
             <div className="relative max-w-4xl mx-auto">
               <div className="grid md:grid-cols-3 gap-6">
                 <Card className="overflow-hidden">
-                  <img
+                  <Image
+                    width={500}
+                    height={500}
                     src="/student-dashboard-interface.png"
                     alt="Student Dashboard"
                     className="w-full h-48 object-cover"
@@ -708,7 +715,9 @@ export default function PenGlobalSolutions() {
                 </Card>
 
                 <Card className="overflow-hidden">
-                  <img
+                  <Image
+                    width={500}
+                    height={500}
                     src="/video-call-classroom-interface.jpg"
                     alt="Video Classroom"
                     className="w-full h-48 object-cover"
@@ -720,7 +729,9 @@ export default function PenGlobalSolutions() {
                 </Card>
 
                 <Card className="overflow-hidden">
-                  <img
+                  <Image
+                    width={500}
+                    height={500}
                     src="/tutor-profile-and-scheduling.jpg"
                     alt="Tutor Profiles"
                     className="w-full h-48 object-cover"
@@ -920,15 +931,15 @@ export default function PenGlobalSolutions() {
                     ))}
                   </div>
                   <p className="text-muted-foreground mb-4">
-                    "Pen Tutor transformed my daughter's math grades. The tutors are incredibly patient and the platform
-                    is so easy to use. Highly recommend!"
+                    &quot; Pen Tutor transformed my daughter&apos;s math grades. The tutors are incredibly patient and the platform
+                    is so easy to use. Highly recommend! &quot;
                   </p>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
                       <Users className="h-5 w-5 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-foreground">Sarah Johnson</p>
+                      <p className="font-semibold text-foreground">Bint-e-Kalsoom</p>
                       <p className="text-sm text-muted-foreground">Parent, Dubai</p>
                     </div>
                   </div>
@@ -943,8 +954,8 @@ export default function PenGlobalSolutions() {
                     ))}
                   </div>
                   <p className="text-muted-foreground mb-4">
-                    "As a tutoring agency owner, Pen Tutor's white-label solution has been a game-changer. The platform
-                    handles everything seamlessly."
+                    &quot;As a tutoring agency owner, Pen Tutor&aposs; white-label solution has been a game-changer. The platform
+                    handles everything seamlessly.&quot;
                   </p>
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
@@ -966,7 +977,7 @@ export default function PenGlobalSolutions() {
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">Case Studies & Success Stories</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Discover how we've helped businesses across different industries achieve their goals through our
+              Discover how we&apos;ve helped businesses across different industries achieve their goals through our
               innovative solutions and expert guidance.
             </p>
           </div>
@@ -1184,9 +1195,9 @@ export default function PenGlobalSolutions() {
                   ))}
                 </div>
                 <p className="text-muted-foreground mb-6 text-pretty">
-                  "Penova Tech delivered our e-commerce platform ahead of schedule and under budget. The team's
+                  &quot;Penova Tech delivered our e-commerce platform ahead of schedule and under budget. The team's
                   expertise in cloud architecture and AI integration exceeded our expectations. Our sales increased by
-                  300% within the first quarter."
+                  300% within the first quarter.&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
@@ -1209,9 +1220,9 @@ export default function PenGlobalSolutions() {
                   ))}
                 </div>
                 <p className="text-muted-foreground mb-6 text-pretty">
-                  "Pen Visa Consultancy made my Canadian immigration process seamless. Their team provided expert
+                  &quot;Pen Visa Consultancy made my Canadian immigration process seamless. Their team provided expert
                   guidance at every step, from document preparation to interview coaching. I received my visa approval
-                  in just 6 months!"
+                  in just 6 months!&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center">
@@ -1234,9 +1245,9 @@ export default function PenGlobalSolutions() {
                   ))}
                 </div>
                 <p className="text-muted-foreground mb-6 text-pretty">
-                  "Pen Tutor transformed our tutoring business. The white-label platform allowed us to scale from 50 to
+                  &quot;Pen Tutor transformed our tutoring business. The white-label platform allowed us to scale from 50 to
                   500+ students while reducing operational costs by 60%. The AI matching system is incredibly
-                  effective."
+                  effective.&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
@@ -1259,8 +1270,8 @@ export default function PenGlobalSolutions() {
                   ))}
                 </div>
                 <p className="text-muted-foreground mb-6 text-pretty">
-                  "The mobile app developed by Penova Tech has revolutionized how we serve our customers. The real-time
-                  features and intuitive design have increased user engagement by 250%. Exceptional work!"
+                  &quot;The mobile app developed by Penova Tech has revolutionized how we serve our customers. The real-time
+                  features and intuitive design have increased user engagement by 250%. Exceptional work!&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center">
@@ -1283,9 +1294,9 @@ export default function PenGlobalSolutions() {
                   ))}
                 </div>
                 <p className="text-muted-foreground mb-6 text-pretty">
-                  "My son's grades improved dramatically after using Pen Tutor. The personalized learning approach and
+                  &quot;My son&apos;s grades improved dramatically after using Pen Tutor. The personalized learning approach and
                   quality of tutors is outstanding. The platform is user-friendly and the progress tracking keeps us
-                  informed."
+                  informed.&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
@@ -1308,9 +1319,9 @@ export default function PenGlobalSolutions() {
                   ))}
                 </div>
                 <p className="text-muted-foreground mb-6 text-pretty">
-                  "Pen Visa Consultancy helped our entire family secure UK visitor visas for our daughter's graduation.
+                  &quot;Pen Visa Consultancy helped our entire family secure UK visitor visas for our daughter&apos;s graduation.
                   Their attention to detail and professional service made the complex process stress-free. Highly
-                  recommended!"
+                  recommended!&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center">
@@ -1475,7 +1486,7 @@ export default function PenGlobalSolutions() {
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">Join Our Growing Team</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Be part of a dynamic, innovative company that's shaping the future of technology, education, and
+              Be part of a dynamic, innovative company that&apos;s shaping the future of technology, education, and
               international services. We offer competitive benefits and a culture of growth.
             </p>
           </div>
@@ -1505,7 +1516,7 @@ export default function PenGlobalSolutions() {
                   <div>
                     <h4 className="font-semibold text-foreground mb-2">Global Impact</h4>
                     <p className="text-muted-foreground">
-                      Make a difference in people's lives across Pakistan, UAE, and beyond
+                      Make a difference in people&apos;s lives across Pakistan, UAE, and beyond
                     </p>
                   </div>
                 </div>
@@ -1659,7 +1670,7 @@ export default function PenGlobalSolutions() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
             {/* Blog Post 1 */}
             <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <img src="/ai.jpg" alt="AI in Education" className="w-full h-48 object-cover" />
+              <Image width={500} height={500} src="/ai.jpg" alt="AI in Education" className="w-full h-48 object-cover" />
               <CardContent className="p-6">
                 <Badge variant="secondary" className="mb-3">
                   Technology
@@ -1681,7 +1692,7 @@ export default function PenGlobalSolutions() {
 
             {/* Blog Post 2 */}
             <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <img src="/visa.jpg" alt="Visa Trends 2025" className="w-full h-48 object-cover" />
+              <Image width={500} height={500} src="/visa.jpg" alt="Visa Trends 2025" className="w-full h-48 object-cover" />
               <CardContent className="p-6">
                 <Badge variant="secondary" className="mb-3">
                   Immigration
@@ -1703,11 +1714,7 @@ export default function PenGlobalSolutions() {
 
             {/* Blog Post 3 */}
             <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
-              <img
-                src="/story.jpg"
-                alt="Cloud Migration Success"
-                className="w-full h-48 object-cover"
-              />
+              <Image width={500} height={500} src="/story.jpg" alt="Cloud Migration Success" className="w-full h-48 object-cover" />
               <CardContent className="p-6">
                 <Badge variant="secondary" className="mb-3">
                   Case Study
@@ -1742,7 +1749,7 @@ export default function PenGlobalSolutions() {
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">Get in Touch</h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-              Ready to start your project or need expert consultation? Contact us today and let's discuss how we can
+              Ready to start your project or need expert consultation? Contact us today and let&apos;s discuss how we can
               help you achieve your goals.
             </p>
           </div>
