@@ -1195,7 +1195,7 @@ export default function PenGlobalSolutions() {
                   ))}
                 </div>
                 <p className="text-muted-foreground mb-6 text-pretty">
-                  &quot;Penova Tech delivered our e-commerce platform ahead of schedule and under budget. The team's
+                  &quot;Penova Tech delivered our e-commerce platform ahead of schedule and under budget. The team&apos;s
                   expertise in cloud architecture and AI integration exceeded our expectations. Our sales increased by
                   300% within the first quarter.&quot;
                 </p>
@@ -1686,7 +1686,7 @@ export default function PenGlobalSolutions() {
                     Read More
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
-                </div>
+                </div> 
               </CardContent>
             </Card>
 
