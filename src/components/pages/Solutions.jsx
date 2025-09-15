@@ -13,7 +13,7 @@ export default function Solutions() {
         <section id="solutions" className="py-20 bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">Our Solutions</h2>
+                    <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">Our Brands</h2>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
                         Discover our comprehensive range of services across three specialized divisions, each designed to meet
                         your unique business needs.
