@@ -108,7 +108,7 @@ export default function Footer() {
                 {/* Bottom Footer */}
                 <div className="border-t border-background/20 pt-8">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                        <div className="text-sm text-background/80">© 2024 Pen Global Solutions. All rights reserved.</div>
+                        <div className="text-sm text-background/80">© {new Date().getFullYear()} Pen Global Solutions. All rights reserved.</div>
                         <div className="flex gap-6 text-sm text-background/80">
                             <a href="#" className="hover:text-primary transition-colors">
                                 Privacy Policy

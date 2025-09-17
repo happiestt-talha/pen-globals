@@ -1,37 +1,93 @@
 "use client"
 
+import React, { useEffect, useRef, useState } from "react"
 import { FileText, Code, CheckCircle, Star, ArrowRight, Users, TrendingUp, GraduationCap } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { useState } from "react"
 import Link from "next/link"
 
 export default function Solutions() {
+    const tabs = ["visa", "tech", "tutor"]
+    const ROTATE_INTERVAL_MS = 5000 // change this value to adjust rotation speed
+
     const [activeTab, setActiveTab] = useState("visa")
+    const [isPaused, setIsPaused] = useState(false) // pauses rotation on hover or when page is hidden
+    const intervalRef = useRef(null)
+
+    // start/stop helpers
+    const startRotation = () => {
+        if (intervalRef.current !== null) return
+        intervalRef.current = window.setInterval(() => {
+            setActiveTab(prev => {
+                const idx = tabs.indexOf(prev)
+                return tabs[(idx + 1) % tabs.length]
+            })
+        }, ROTATE_INTERVAL_MS)
+    }
+
+    const stopRotation = () => {
+        if (intervalRef.current !== null) {
+            clearInterval(intervalRef.current)
+            intervalRef.current = null
+        }
+    }
+
+    // rotation effect
+    useEffect(() => {
+        if (!isPaused) startRotation()
+        else stopRotation()
+
+        // Pause when the page/tab is not visible to avoid switching while the user is on another tab
+        const handleVisibility = () => {
+            if (document.visibilityState === "hidden") stopRotation()
+            else if (!isPaused) startRotation()
+        }
+
+        document.addEventListener("visibilitychange", handleVisibility)
+
+        return () => {
+            stopRotation()
+            document.removeEventListener("visibilitychange", handleVisibility)
+        }
+    }, [isPaused])
+
+    // When user manually selects a tab, set it and restart the timer so they get a full interval on their selection
+    const handleSelectTab = (tab) => {
+        setActiveTab(tab)
+        // restart rotation
+        stopRotation()
+        startRotation()
+    }
+
     return (
         <section id="solutions" className="py-20 bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">Our Brands</h2>
+                    <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">Our Solutions</h2>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
                         Discover our comprehensive range of services across three specialized divisions, each designed to meet
                         your unique business needs.
                     </p>
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-4 mb-12">
+                {/* Pause rotation while the user is interacting with the tab buttons (hover) */}
+                <div
+                    className="flex flex-wrap justify-center gap-4 mb-12"
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)}
+                >
                     <button
-                        onClick={() => setActiveTab("visa")}
+                        onClick={() => handleSelectTab("visa")}
                         className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === "visa"
                             ? "bg-primary text-primary-foreground shadow-lg"
                             : "bg-muted text-muted-foreground hover:bg-muted/80"
                             }`}
                     >
-                        Pen Visa Consultancy
+                        Pen Visa
                     </button>
                     <button
-                        onClick={() => setActiveTab("tech")}
+                        onClick={() => handleSelectTab("tech")}
                         className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === "tech"
                             ? "bg-primary text-primary-foreground shadow-lg"
                             : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -40,7 +96,7 @@ export default function Solutions() {
                         Penova Tech
                     </button>
                     <button
-                        onClick={() => setActiveTab("tutor")}
+                        onClick={() => handleSelectTab("tutor")}
                         className={`px-6 py-3 rounded-lg font-medium transition-all duration-200 ${activeTab === "tutor"
                             ? "bg-primary text-primary-foreground shadow-lg"
                             : "bg-muted text-muted-foreground hover:bg-muted/80"
@@ -59,7 +115,7 @@ export default function Solutions() {
                                         <FileText className="h-8 w-8 text-primary" />
                                     </div>
                                     <div>
-                                        <h3 className="text-2xl font-bold text-foreground">Pen Visa Consultancy</h3>
+                                        <h3 className="text-2xl font-bold text-foreground">Pen Visa</h3>
                                         <p className="text-muted-foreground">Expert visa guidance and application support</p>
                                     </div>
                                 </div>
@@ -179,7 +235,7 @@ export default function Solutions() {
 
                                         <Button className="bg-secondary text-secondary-foreground hover:bg-secondary/90">
                                             <Link href="https://penovatech.com/" target="_blank" className="flex items-center gap-2">
-                                               Get a quote
+                                                Get a quote
                                                 <ArrowRight className="ml-2 h-4 w-4" />
                                             </Link>
                                         </Button>
@@ -242,7 +298,7 @@ export default function Solutions() {
                                         <div className="flex items-center gap-4 mb-6">
                                             <Badge variant="secondary" className="text-lg px-4 py-2">
                                                 <Users className="h-4 w-4 mr-1" />
-                                                7-Day Free Trial
+                                                1-Day Free Trial
                                             </Badge>
                                         </div>
 
@@ -260,5 +316,5 @@ export default function Solutions() {
                 </div>
             </div>
         </section>
-    );
+    )
 }

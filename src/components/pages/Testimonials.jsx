@@ -46,16 +46,16 @@ export default function Testimonials() {
                                 ))}
                             </div>
                             <p className="text-muted-foreground mb-6 text-pretty">
-                                "We were hesitant about outsourcing our e-commerce platform, but Penova Tech proved us wrong.
+                                We were hesitant about outsourcing our e-commerce platform, but Penova Tech proved us wrong.
                                 They delivered a solid solution that helped us increase online sales by around 40% in six months.
-                                Their cloud architecture knowledge was impressive."
+                                Their cloud architecture knowledge was impressive.
                             </p>
                             <div className="flex items-center gap-3">
                                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                                     <Building2 className="h-6 w-6 text-primary" />
                                 </div>
                                 <div>
-                                    <p className="font-semibold text-foreground">James Wilson</p>
+                                    <p className="font-semibold text-foreground">Shariq Khan</p>
                                     <p className="text-sm text-muted-foreground">Operations Director, Urban Retail Collective</p>
                                 </div>
                             </div>
@@ -71,16 +71,16 @@ export default function Testimonials() {
                                 ))}
                             </div>
                             <p className="text-muted-foreground mb-6 text-pretty">
-                                "The immigration process was more complex than I expected, but Pen Visa Consultancy
+                                The immigration process was more complex than I expected, but Pen Visa Consultancy
                                 helped navigate everything. My Canadian visa took about 8 months to get approved, but
-                                having their guidance made the paperwork much less stressful."
+                                having their guidance made the paperwork much less stressful.
                             </p>
                             <div className="flex items-center gap-3">
                                 <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center">
                                     <FileText className="h-6 w-6 text-secondary" />
                                 </div>
                                 <div>
-                                    <p className="font-semibold text-foreground">Sofia Rodriguez</p>
+                                    <p className="font-semibold text-foreground">Sofia Hameed</p>
                                     <p className="text-sm text-muted-foreground">Frontend Developer, Barcelona</p>
                                 </div>
                             </div>
@@ -96,16 +96,16 @@ export default function Testimonials() {
                                 ))}
                             </div>
                             <p className="text-muted-foreground mb-6 text-pretty">
-                                "We've been using Pen Tutor for about a year now, and it's helped us grow our student base
+                                We've been using Pen Tutor for about a year now, and it's helped us grow our student base
                                 steadily. The platform isn't perfect - we had some onboarding issues - but their support team
-                                was responsive and the AI matching works well for most of our students."
+                                was responsive and the AI matching works well for most of our students.
                             </p>
                             <div className="flex items-center gap-3">
                                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
                                     <GraduationCap className="h-6 w-6 text-primary" />
                                 </div>
                                 <div>
-                                    <p className="font-semibold text-foreground">Michael Chen</p>
+                                    <p className="font-semibold text-foreground">Mohsin Ali</p>
                                     <p className="text-sm text-muted-foreground">Co-founder, LearnBright Tutoring</p>
                                 </div>
                             </div>

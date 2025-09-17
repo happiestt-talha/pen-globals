@@ -30,10 +30,10 @@ export default function Team() {
                             <p className="text-sm text-muted-foreground mb-4">
                                 Visionary leader with 15+ years in international business and technology innovation
                             </p>
-                            <Button variant="outline" size="sm">
+                            {/* <Button variant="outline" size="sm">
                                 <Linkedin className="h-4 w-4 mr-2" />
                                 Connect
-                            </Button>
+                            </Button> */}
                         </CardContent>
                     </Card>
 
@@ -48,10 +48,10 @@ export default function Team() {
                             <p className="text-sm text-muted-foreground mb-4">
                                 Tech innovator specializing in AI/ML and scalable cloud architectures
                             </p>
-                            <Button variant="outline" size="sm">
+                            {/* <Button variant="outline" size="sm">
                                 <Linkedin className="h-4 w-4 mr-2" />
                                 Connect
-                            </Button>
+                            </Button> */}
                         </CardContent>
                     </Card>
 
@@ -66,10 +66,10 @@ export default function Team() {
                             <p className="text-sm text-muted-foreground mb-4">
                                 Software development expert with expertise in enterprise solutions
                             </p>
-                            <Button variant="outline" size="sm">
+                            {/* <Button variant="outline" size="sm">
                                 <Linkedin className="h-4 w-4 mr-2" />
                                 Connect
-                            </Button>
+                            </Button> */}
                         </CardContent>
                     </Card>
 

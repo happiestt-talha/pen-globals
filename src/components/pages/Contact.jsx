@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Mail, MessageSquare, Phone, Send, MapPin } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -15,19 +15,40 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
 export default function Contact() {
+    // form state (same functionality as your first version)
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [company, setCompany] = useState("");
     const [service, setService] = useState("");
+    const [subService, setSubService] = useState("");
     const [message, setMessage] = useState("");
     const [website, setWebsite] = useState(""); // honeypot
     const [loading, setLoading] = useState(false);
     const [status, setStatus] = useState(null); // { type: 'success'|'error', text: '' }
 
-    const validateEmail = (em) => {
-        // simple validation
-        return /\S+@\S+\.\S+/.test(em);
-    };
+    const validateEmail = (em) => /\S+@\S+\.\S+/.test(em);
+
+    // service -> subservice mapping
+    const subServicesMap = useMemo(
+        () => ({
+            "penova-tech": [
+                { value: "web-dev", label: "Web Development" },
+                { value: "app-dev", label: "App Development" },
+                { value: "ui-ux", label: "UI/UX Design" },
+                { value: "ecommerce", label: "E-commerce Solutions" },
+                { value: "qa", label: "QA & Testing" },
+            ],
+            "pen-tutor": [
+                { value: "course-dev", label: "Course Development" },
+                { value: "platform", label: "Platform Customization" },
+                { value: "tutoring", label: "Tutoring Services" },
+            ],
+            // other services can have empty arrays or omitted
+        }),
+        []
+    );
+
+    const availableSubservices = subServicesMap[service] || [];
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -49,6 +70,12 @@ export default function Contact() {
             return;
         }
 
+        // if selected service has subservices, require subService
+        if (availableSubservices.length > 0 && !subService) {
+            setStatus({ type: "error", text: "Please select a sub-service for the chosen service." });
+            return;
+        }
+
         setLoading(true);
 
         try {
@@ -60,19 +87,21 @@ export default function Contact() {
                     email,
                     company,
                     service,
+                    subService,
                     message,
-                    website, // honeypot (should be empty)
+                    website, // honeypot
                 }),
             });
 
             const data = await res.json();
             if (res.ok) {
                 setStatus({ type: "success", text: data?.message || "Message sent. We'll get back to you soon." });
-                // reset form
+                // reset form (preserve nothing)
                 setName("");
                 setEmail("");
                 setCompany("");
                 setService("");
+                setSubService("");
                 setMessage("");
             } else {
                 setStatus({ type: "error", text: data?.error || "Something went wrong. Try again later." });
@@ -86,32 +115,89 @@ export default function Contact() {
     };
 
     return (
-        <section id="contact" className="py-20 bg-muted">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">Get in Touch</h2>
-                    <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-                        Ready to start your project or need expert consultation? Contact us today and let&apos;s discuss how we can
-                        help you achieve your goals.
-                    </p>
-                </div>
+        <section id="contact" className="py-24">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="grid lg:grid-cols-2 grid-cols-1 gap-8 items-stretch">
+                    {/* Left - image / info (design from your second return) */}
+                    <div className="relative group w-full h-full rounded-2xl overflow-hidden">
+                        <img
+                            src="https://pagedone.io/asset/uploads/1696488602.png"
+                            alt="Contact visual"
+                            className="w-full h-full object-cover lg:rounded-l-2xl"
+                        />
 
-                <div className="grid lg:grid-cols-2 gap-12">
-                    {/* Contact Form */}
-                    <Card className="p-8">
-                        <CardContent className="p-0">
-                            <h3 className="text-2xl font-bold text-foreground mb-6">Send us a Message</h3>
-                            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/25 to-black/40" />
+
+                        <div className="absolute top-8 left-8 text-white">
+                            <h1 className="font-manrope text-4xl font-bold leading-10">Contact us</h1>
+                            <p className="mt-3 max-w-xs text-sm text-white/90">Start your next project with us — tell us what you need and we'll be in touch.</p>
+                        </div>
+
+                        <div className="absolute bottom-6 left-6 right-6">
+                            <div className="bg-white/25 backdrop-blur-md rounded-lg p-6 shadow-md">
+                                <div className="mb-4">
+                                    <div className="flex items-start gap-4">
+                                        <div className="p-2 bg-secondary/10 rounded-lg">
+                                            <Phone className="h-6 w-6 text-secondary" />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-semibold text-foreground mb-1">Phone / WhatsApp</h4>
+                                            <p className="text-white/90">Pakistan: +92 321 8815888</p>
+                                            <p className="text-white/90">UAE (Dubai): +971 58 147 4250</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="mb-4">
+                                    <div className="flex items-start gap-4">
+                                        <div className="p-2 bg-primary/10 rounded-lg">
+                                            <Mail className="h-6 w-6 text-primary" />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-semibold text-foreground mb-1">Email</h4>
+                                            <p className="text-white/90">General: info@penglobal.com</p>
+                                            <p className="text-white/90">Support: support@penglobal.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div className="flex items-start gap-4">
+                                        <div className="p-2 bg-secondary/10 rounded-lg">
+                                            <MapPin className="h-6 w-6 text-secondary" />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-semibold text-foreground mb-1">Office Locations</h4>
+                                            <div className="space-y-2">
+                                                <div>
+                                                    <p className="font-medium text-foreground">Dubai, UAE</p>
+                                                    <p className="text-white/90">Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, U.A.E.</p>
+                                                </div>
+                                                <div>
+                                                    <p className="font-medium text-foreground">Lahore, Pakistan</p>
+                                                    <p className="text-white/90">Johar Town, Lahore, Pakistan</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Right - form (functionality of the first return) */}
+                    <div className="bg-secondary/5 px-6 py-4 pb-10 lg:px-11 lg:py-6 lg:rounded-r-2xl rounded-2xl">
+                        <h2 className="text-secondary font-manrope text-4xl font-semibold leading-10 mb-6">Send Us A Message</h2>
+
+                        <form onSubmit={handleSubmit} className="flex flex-col lg:gap-48" noValidate>
+
+                            <div className="space-y-6">
                                 <div className="grid md:grid-cols-2 gap-4">
                                     <div>
                                         <label className="block text-sm font-medium text-foreground mb-2">Full Name *</label>
-                                        <Input
-                                            placeholder="Your full name"
-                                            value={name}
-                                            onChange={(e) => setName(e.target.value)}
-                                            required
-                                        />
+                                        <Input placeholder="Your full name" value={name} onChange={(e) => setName(e.target.value)} required />
                                     </div>
+
                                     <div>
                                         <label className="block text-sm font-medium text-foreground mb-2">Email Address *</label>
                                         <Input
@@ -127,27 +213,49 @@ export default function Contact() {
                                 <div className="grid md:grid-cols-2 gap-4">
                                     <div>
                                         <label className="block text-sm font-medium text-foreground mb-2">Company/Organization</label>
-                                        <Input
-                                            placeholder="Your company name"
-                                            value={company}
-                                            onChange={(e) => setCompany(e.target.value)}
-                                        />
+                                        <Input placeholder="Your company name" value={company} onChange={(e) => setCompany(e.target.value)} />
                                     </div>
+
                                     <div>
                                         <label className="block text-sm font-medium text-foreground mb-2">Service Interest *</label>
-                                        <Select value={service} onValueChange={(v) => setService(v)}>
+                                        <Select
+                                            value={service}
+                                            onValueChange={(v) => {
+                                                setService(v);
+                                                setSubService(""); // reset subservice whenever service changes
+                                            }}
+                                        >
                                             <SelectTrigger>
                                                 <SelectValue placeholder="Select a service" />
                                             </SelectTrigger>
                                             <SelectContent>
                                                 <SelectItem value="penova-tech">Penova Tech - Software Development</SelectItem>
                                                 <SelectItem value="pen-tutor">Pen Tutor - Online Learning Platform</SelectItem>
-                                                <SelectItem value="pen-visa">Pen Visa Consultancy - Immigration Services</SelectItem>
+                                                <SelectItem value="pen-visa">Pen Visa - Immigration Services</SelectItem>
                                                 <SelectItem value="general">General Inquiry</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     </div>
                                 </div>
+
+                                {/* show sub-service if available for chosen service */}
+                                {availableSubservices.length > 0 && (
+                                    <div>
+                                        <label className="block text-sm font-medium text-foreground mb-2">Sub-service *</label>
+                                        <Select value={subService} onValueChange={(v) => setSubService(v)}>
+                                            <SelectTrigger>
+                                                <SelectValue placeholder="Select a sub-service" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {availableSubservices.map((s) => (
+                                                    <SelectItem key={s.value} value={s.value}>
+                                                        {s.label}
+                                                    </SelectItem>
+                                                ))}
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
+                                )}
 
                                 <div>
                                     <label className="block text-sm font-medium text-foreground mb-2">Message *</label>
@@ -161,120 +269,22 @@ export default function Contact() {
                                 </div>
 
                                 {/* Honeypot field for spam protection - hide visually but keep in DOM */}
-                                <input
-                                    type="text"
-                                    name="website"
-                                    value={website}
-                                    onChange={(e) => setWebsite(e.target.value)}
-                                    style={{ display: "none" }}
-                                    autoComplete="off"
-                                />
+                                <input type="text" name="website" value={website} onChange={(e) => setWebsite(e.target.value)} style={{ display: "none" }} autoComplete="off" />
+                            </div>
 
-                                <Button
-                                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-                                    size="lg"
-                                    type="submit"
-                                    disabled={loading}
-                                >
+                            <div>
+                                <Button className="w-full" size="lg" type="submit" disabled={loading}>
                                     <Send className="mr-2 h-5 w-5" />
                                     {loading ? "Sending..." : "Send Message"}
                                 </Button>
-
-                                {status && (
-                                    <p
-                                        className={`mt-2 text-sm ${status.type === "success" ? "text-foreground" : "text-destructive"
-                                            }`}
-                                        role="status"
-                                    >
-                                        {status.text}
-                                    </p>
-                                )}
-                            </form>
-                        </CardContent>
-                    </Card>
-
-                    {/* Contact Information */}
-                    <div className="space-y-8">
-                        <div>
-                            <h3 className="text-2xl font-bold text-foreground mb-6">Contact Information</h3>
-                            <div className="space-y-6">
-                                <div className="flex items-start gap-4">
-                                    <div className="p-3 bg-primary/10 rounded-lg">
-                                        <Phone className="h-6 w-6 text-primary" />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-semibold text-foreground mb-1">Phone Numbers</h4>
-                                        <p className="text-muted-foreground">Pakistan: +92 321 8815888</p>
-                                        <p className="text-muted-foreground">UAE: +971 58 147 4250</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start gap-4">
-                                    <div className="p-3 bg-secondary/10 rounded-lg">
-                                        <Mail className="h-6 w-6 text-secondary" />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-semibold text-foreground mb-1">Email Addresses</h4>
-                                        <p className="text-muted-foreground">General: info@penglobal.com</p>
-                                        <p className="text-muted-foreground">Sales: sales@penglobal.com</p>
-                                        <p className="text-muted-foreground">Support: support@penglobal.com</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start gap-4">
-                                    <div className="p-3 bg-primary/10 rounded-lg">
-                                        <MapPin className="h-6 w-6 text-primary" />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-semibold text-foreground mb-1">Office Locations</h4>
-                                        <div className="space-y-2">
-                                            <div>
-                                                <p className="font-medium text-foreground">Dubai, UAE</p>
-                                                <p className="text-muted-foreground">
-                                                    Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, U.A.E.
-                                                </p>
-                                            </div>
-                                            <div>
-                                                <p className="font-medium text-foreground">Lahore, Pakistan</p>
-                                                <p className="text-muted-foreground">Johar Town, Lahore, Pakistan</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start gap-4">
-                                    <div className="p-3 bg-secondary/10 rounded-lg">
-                                        <MessageSquare className="h-6 w-6 text-secondary" />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-semibold text-foreground mb-1">WhatsApp</h4>
-                                        <p className="text-muted-foreground">+92 321 8815888</p>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
 
-                        {/* Business Hours */}
-                        <Card className="p-6">
-                            <CardContent className="p-0">
-                                <h4 className="font-semibold text-foreground mb-4">Business Hours</h4>
-                                <div className="space-y-2 text-sm">
-                                    <div className="flex justify-between">
-                                        <span className="text-muted-foreground">Monday - Friday</span>
-                                        <span className="text-foreground">9:00 AM - 6:00 PM</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-muted-foreground">Saturday</span>
-                                        <span className="text-foreground">10:00 AM - 4:00 PM</span>
-                                    </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-muted-foreground">Sunday</span>
-                                        <span className="text-foreground">Closed</span>
-                                    </div>
-                                </div>
-                                <p className="text-xs text-muted-foreground mt-4">* Times shown in Gulf Standard Time (GST)</p>
-                            </CardContent>
-                        </Card>
+                            {status && (
+                                <p className={`mt-2 text-sm ${status.type === "success" ? "text-foreground" : "text-destructive"}`} role="status">
+                                    {status.text}
+                                </p>
+                            )}
+                        </form>
                     </div>
                 </div>
             </div>

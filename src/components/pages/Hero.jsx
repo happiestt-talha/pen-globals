@@ -11,6 +11,16 @@ export default function Hero() {
     const heroSlides = [
         {
             id: 1,
+            title: "Pen Global Solutions",
+            subtitle: "Building cross-border tech & services that move your business forward",
+            cta: "Get a Free Consultation",
+            href: "#contact",
+            secondaryCta: "Learn More",
+            videoUrl: "/meydan.webp",
+            microcopy: "Free consultation | 24/7 support | Offices: PK, UAE",
+        },
+        {
+            id: 2,
             title: "Technical Solutions",
             subtitle: "Custom software solutions for international businesses",
             cta: "See Our Work",
@@ -19,16 +29,6 @@ export default function Hero() {
             // videoUrl: "/software-development-team-working-on-modern-applic.jpg",
             videoUrl: "/code.jpg",
             microcopy: "Web & Mobile | Cloud Solutions | AI/ML Integration",
-        },
-        {
-            id: 2,
-            title: "Pen Global Solutions",
-            subtitle: "Building cross-border tech & services that move your business forward",
-            cta: "Get a Free Consultation",
-            href: "#contact",
-            secondaryCta: "Learn More",
-            videoUrl: "/meydan.webp",
-            microcopy: "Free consultation | 24/7 support | Offices: PK, UAE",
         },
         {
             id: 3,
@@ -44,7 +44,7 @@ export default function Hero() {
             id: 4,
             title: "Online Tutoring",
             subtitle: "Learn anywhere with our online tutoring platform",
-            cta: "Start 7-Day Free Trial",
+            cta: "Start 1-Day Free Trial",
             href: "https://pentutor.com/",
             secondaryCta: "View Demo",
             // videoUrl: "/online-learning-platform-with-video-calls-and-inte.jpg",
